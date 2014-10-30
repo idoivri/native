@@ -28,7 +28,7 @@ section, footer, header, aside, nav{
 
 nav{
 	display:inline-block;
-	margin:60px auto 45px;
+	margin:20px auto 25px;
 	background-color:#5597b4;
 	box-shadow:0 1px 1px #ccc;
 	border-radius:2px;

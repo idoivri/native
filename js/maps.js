@@ -17,7 +17,7 @@
 
 
    directionsService.route(request, function(response, status) {
-      alert(document.getElementById("from");
+      //alert(document.getElementById("from");
       if (status == google.maps.DirectionsStatus.OK) {
 
          // Display the distance:
