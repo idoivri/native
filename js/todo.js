@@ -5,8 +5,9 @@ angular.module('todoApp', [])
       {text:'build an angular app', done:false}];
  
     $scope.addTodo = function() {
-      $scope.todos.push({text:$scope.todoText, done:false});
-      $scope.todoText = '';
+      alert($scope.todoText1+' '+$scope.todoText2);
+      //$scope.todos.push({text:$scope.todoText, done:false});
+      //$scope.todoText = '';
     };
  
     $scope.remaining = function() {
