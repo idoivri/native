@@ -33,18 +33,25 @@
 
 
     var rideInfo = {
+        getRideOptions : function() {
+          return [{
 
+
+          }];
+
+
+        }
 
     };
-    
+
     return rideInfo;
 
 
-  }
+  };
 
 
 
-  var rideApp = arideInfoService = ngular.module('rideApp', []);
+  var rideApp = arideInfoService = angular.module('rideApp', []);
 
   rideApp.controller('rideController', ['$scope', rideController]);
   rideApp.factory('RideInfoService', rideInfoService);
