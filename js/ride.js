@@ -9,6 +9,8 @@
         //alert(this.From+' '+this.To);
         //$scope.todos.push({text:$scope.todoText, done:false});
         //$scope.todoText = '';
+        this.From='Tel Aviv Herzel 100';
+        this.To = 'Tel Aviv Herzel 90';
         console.log(this.getRidesOptions());
 
       };
@@ -142,17 +144,13 @@
              travelMode: google.maps.DirectionsTravelMode[transMethod]  // google.maps.DirectionsTravelMode.TRANSIT
          };
 
-         request = {
-             origin: From, 
-             destination: To,
-             travelMode: google.maps.DirectionsTravelMode.TRANSIT  // google.maps.DirectionsTravelMode.TRANSIT
-         };
-
+ 
 
          console.log(request);
 
           directionsService.route(request, function(response, status) {
          //    //alert(document.getElementById("from");
+            console.log('is ok ?' + status);
              if (status == google.maps.DirectionsStatus.OK) {
 
          //       // Display the distance:
@@ -168,7 +166,8 @@
                   console.log(response);
 
                   var ride = rideInfo.createRide(To,From,transMethod,time,distance,null,null,null);
-
+                  console.log('created ride');
+                  console.log(ride);
                   console.log('queryGoogleRide method at rideInfo service return');
 
                   return ride;
@@ -183,16 +182,67 @@
       getRidesOptions : function(From, To) {
         console.log('getRideOptions method at rideInfo service started');
 
-        var bus = rideInfo.queryGoogleRide(From, To, 'TRANSIT');
-        var car = rideInfo.queryGoogleRide(From, To, 'DRIVING');
-        var walk = rideInfo.queryGoogleRide(From, To, 'WALKING');
-        var taxi = rideInfo.queryGoogleRide(From, To, 'DRIVING');
-        var uber = rideInfo.queryGoogleRide(From, To, 'DRIVING');
-        var bike = rideInfo.queryGoogleRide(From, To, 'WALKING');
+        var calculation = function(walk, car, bus, taxi, uber, bike) {
+
+          walk.calories=walk.time/60*4.4;
+          walk.cost=0;
+          walk.pollutants=0;
+
+          //CAR:
+          car.calories=0;
+          car.pollutants=car.distance/1000*271;
+          car.cost=car.distance/1000*2.738;
+
+          //BUS:
+          bus.calories=44; //TODO: FIX - 10 minutes walking
+          bus.pollutants=bus.distance/1000*109;
+          bus.cost=6.60;
+
+          //TAXI
+          taxi.calories=0;
+          taxi.pollutants=taxi.distance/1000*271;
+          taxi.cost=12.3+taxi.time/10*0.3;
+
+          //UBER
+          uber.calories=0;
+          uber.pollutants=uber.distance/1000*271;
+          uber.cost=10.3+uber.time/10*0.2;
+
+          //BIKE
+          bike.pollutants=bike.distance/1000*21;
+          bike.time=bike.time/3;
+          bike.calories=bike.time/3600*567;
+          bike.cost=0;
+
+          return [bus, car, walk, uber, taxi, bike];
+
+        }
+
+        var results = function(From, To, calculation) {
+          var bus = rideInfo.queryGoogleRide(From, To, 'TRANSIT');
+          var car = rideInfo.queryGoogleRide(From, To, 'DRIVING');
+          var walk = rideInfo.queryGoogleRide(From, To, 'WALKING');
+          var taxi = rideInfo.queryGoogleRide(From, To, 'DRIVING');
+          var uber = rideInfo.queryGoogleRide(From, To, 'DRIVING');
+          var bike = rideInfo.queryGoogleRide(From, To, 'WALKING');
+
+          //$timeout(calculation(walk, car, bus, taxi, uber, bike),5000)
+          return calculation(walk, car, bus, taxi, uber, bike);
+
+
+        }
+
+        results(From, To, calculation);
+
+        console.log(results(From, To, calculation));
+        //WALKING:
+ 
+
+
+
 
         console.log('getRideOptions method at rideInfo service return');
 
-          return [bus, car, walk, uber, taxi, bike];
 
 
         }
