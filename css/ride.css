@@ -106,7 +106,7 @@ img {
 
 #optionsList {
 	font-size: 30px;
-	text-align: center;
+	text-align: left;
 	width:60%;
 	float: center;
 	color: purple;
@@ -127,6 +127,10 @@ li:hover {
 	background-color: green;
 	margin-bottom: 15px;
 
+}
+
+span {
+	background-color: cyan;
 }
 
 
