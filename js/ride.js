@@ -29,7 +29,8 @@
         // directionsDisplay.setMap(map);
 
         // directionsDisplay.setDirections(response);
-        console.log(RidesInfoService.getRidesOptions(rideController.From, rideController.To));
+        console.log(this.From + this.To);
+        console.log(RidesInfoService.getRidesOptions(this.From, this.To));
 
         //return RidesInfoService.mockRidesOptions();
         //return RidesInfoService.createRide("usha 1, tel Aviv","uri tzvi greenberg 8, Tel Aviv","car",20,50,200,300,"");
@@ -131,6 +132,8 @@
       },
 
       queryGoogleRide : function(From, To, transMethod) {
+          console.log('queryGoogleRide method at rideInfo service started');
+
           var directionsService = new google.maps.DirectionsService();
 
           var request = {
@@ -139,8 +142,15 @@
              travelMode: google.maps.DirectionsTravelMode[transMethod]  // google.maps.DirectionsTravelMode.TRANSIT
          };
 
+         request = {
+             origin: From, 
+             destination: To,
+             travelMode: google.maps.DirectionsTravelMode.TRANSIT  // google.maps.DirectionsTravelMode.TRANSIT
+         };
 
-        
+
+         console.log(request);
+
           directionsService.route(request, function(response, status) {
          //    //alert(document.getElementById("from");
              if (status == google.maps.DirectionsStatus.OK) {
@@ -157,7 +167,11 @@
 
                   console.log(response);
 
-                  return (createRide(To,From,transMethod,time,distance,null,null,null));
+                  var ride = rideInfo.createRide(To,From,transMethod,time,distance,null,null,null);
+
+                  console.log('queryGoogleRide method at rideInfo service return');
+
+                  return ride;
              }
              console.log('google failed misearably to recommend a ride');
              return null;
@@ -167,6 +181,7 @@
 
 
       getRidesOptions : function(From, To) {
+        console.log('getRideOptions method at rideInfo service started');
 
         var bus = rideInfo.queryGoogleRide(From, To, 'TRANSIT');
         var car = rideInfo.queryGoogleRide(From, To, 'DRIVING');
@@ -174,6 +189,8 @@
         var taxi = rideInfo.queryGoogleRide(From, To, 'DRIVING');
         var uber = rideInfo.queryGoogleRide(From, To, 'DRIVING');
         var bike = rideInfo.queryGoogleRide(From, To, 'WALKING');
+
+        console.log('getRideOptions method at rideInfo service return');
 
           return [bus, car, walk, uber, taxi, bike];
 
