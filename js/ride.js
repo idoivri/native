@@ -1,6 +1,6 @@
 
 (function() {
-   var rideController = function($scope, RidesInfoService) {
+   var rideController = function($scope, RidesInfoService, $window) {
  
       this.rideOptions =[];
       
@@ -15,6 +15,8 @@
         console.log(rideOptions);
 
         this.rideOptions = rideOptions;
+
+        $window.scrollTo(2500,0);
 
       };
 
@@ -140,7 +142,7 @@
         var ride1 = rideInfo.createRide("Ibn Gvirol 8, Tel Aviv","Tel Aviv Herzel 100","walk",4732,6164,0,0,"");
         var ride4 = rideInfo.createRide("Ibn Gvirol 8, Tel Aviv","Tel Aviv Herzel 100","drive",853,6800,18.94,1842.8,"");
         var ride3 = rideInfo.createRide("Ibn Gvirol 8, Tel Aviv","Tel Aviv Herzel 100","bus",1609,6423,6.6,648.723,"");
-        var ride2 = rideInfo.createRide("Ibn Gvirol 8, Tel Aviv","Tel Aviv Herzel 100","bicycle",1577,6164,128.1,0,"");
+        var ride2 = rideInfo.createRide("Ibn Gvirol 8, Tel Aviv","Tel Aviv Herzel 100","bicycle",1577,6164,3,128.1,"");
         
         var rides = [ride1,ride2,ride3,ride4];
         return rides;
@@ -272,7 +274,7 @@
 
   var rideApp = arideInfoService = angular.module('rideApp', []);
 
-  rideApp.controller('rideController', ['$scope', 'RidesInfoService', rideController]);
+  rideApp.controller('rideController', ['$scope', 'RidesInfoService','$window', rideController]);
   rideApp.factory('RidesInfoService', ridesInfoService);
 })();
 
