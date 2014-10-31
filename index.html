@@ -75,16 +75,16 @@
 
       <br><br><br>
 
-      <div id="map" style="width: 400px; height: 300px;"></div> 
 
  
   </form>
 
 
-   <p>
+  <div id="results">
+  <p>
         Opional ways to go from : {{rideController.rideOptions[0].from}}
         To : {{rideController.rideOptions[0].to}}
-    </p>
+  </p>
   <br/>
   
   <ul id="optionsList">
@@ -99,6 +99,10 @@
     </li>
 
   </ul>
+
+  <div id="map" style="width: 400px; height: 300px;"></div> 
+
+</div>
     <!--script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script-->
         <script src="dist/angular.min.js"></script>
 

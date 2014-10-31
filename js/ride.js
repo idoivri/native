@@ -81,7 +81,7 @@
         var message = ride.from + " " + ride.to + " " + ride.type + " " +  ride.time + " " +  ride.distance + " " + ride.pollutants + " " + ride.cost + " "+ride.title;
     },
 
-    createRide: function(to,from,type,time,distance,pollutants,cost,title) {
+    createRide: function(to,from,type,time,distance,cost,pollutants,title) {
       var obj = [];
       obj["to"]=to;
       obj["from"]=from;
