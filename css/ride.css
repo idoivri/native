@@ -13,6 +13,11 @@ form {
 	font-weight:bold;
 }
 
+input {
+	height : 30px;
+	position: center;
+}
+
 #rideSubmit {
 	padding-top: 0.75cm;
 	width:100px;
