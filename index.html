@@ -81,12 +81,20 @@
   </form>
 
 
+   <p>
+        Opional ways to go from : {{rideController.rideOptions[0].from}}
+        To : {{rideController.rideOptions[0].to}}
+    </p>
+  <br/>
   
   <ul id="optionsList">
+ 
+
     <li ng-repeat="rideOption in rideController.rideOptions">
-        {{rideOption.from}}
-        {{rideOption.to}}
-        {{rideOption.cost}}
+        Cost : {{rideOption.cost}}
+        Distance : {{rideOption.distance}}
+        Time : {{rideOption.time}}
+        Pollutant : {{rideOption.pollutants}}
     </li>
 
   </ul>
