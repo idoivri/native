@@ -78,27 +78,22 @@ h2{
 	 
 }
 
-#backgroundContainer {
+#all {
 
 	background-image: url(http://1.bp.blogspot.com/_d8qBwwC64-w/TJotnNpsJTI/AAAAAAAAIzQ/wpoA1dlmAm8/s1600/DSC_0087.JPG);
 	 background-position: 50% 0%;
 	 background-repeat: no-repeat;
-	  position:absolute;
-	 -webkit-filter: blur(13px);
-    -moz-filter: blur(13px);
-    -o-filter: blur(13px);
-    -ms-filter: blur(13px);
-    filter: blur(13px);
-
-}
-
-
-#contentContainer {
 	 -webkit-filter: blur(0px);
     -moz-filter: blur(0px);
     -o-filter: blur(0px);
     -ms-filter: blur(0px);
     filter: blur(0px);
+
+}
+
+
+#contentContainer {
+
 
 }
 
