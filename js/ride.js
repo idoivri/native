@@ -1,28 +1,52 @@
-angular.module('todoApp', [])
-  .controller('TodoController', ['$scope', function($scope) {
-    $scope.todos = [
-      {text:'learn angular', done:true},
-      {text:'build an angular app', done:false}];
- 
-    $scope.addTodo = function() {
-      alert($scope.todoText1+' '+$scope.todoText2);
-      //$scope.todos.push({text:$scope.todoText, done:false});
-      //$scope.todoText = '';
+
+(function() {
+   var rideController = function($scope) {
+      this.rides = [
+        {text:'learn angular', done:true},
+        {text:'build an angular app', done:false}];
+   
+      this.addRide = function() {
+        alert(this.From+' '+this.To);
+        //$scope.todos.push({text:$scope.todoText, done:false});
+        //$scope.todoText = '';
+      };
+   
+      this.remaining = function() {
+        var count = 0;
+        angular.forEach(this.rides, function(rides) {
+          count += ride.done ? 0 : 1;
+        });
+        return count;
+      };
+   
+      this.archive = function() {
+        var oldTodos = this.rides;
+        this.rides = [];
+        angular.forEach(oldRides, function(ride) {
+          if (!ride.done) this.rides.push(ride);
+        });
+      };
     };
- 
-    $scope.remaining = function() {
-      var count = 0;
-      angular.forEach($scope.todos, function(todo) {
-        count += todo.done ? 0 : 1;
-      });
-      return count;
+
+
+  var rideInfoService = function () {
+
+
+    var rideInfo = {
+
+
     };
- 
-    $scope.archive = function() {
-      var oldTodos = $scope.todos;
-      $scope.todos = [];
-      angular.forEach(oldTodos, function(todo) {
-        if (!todo.done) $scope.todos.push(todo);
-      });
-    };
-  }]);
+    
+    return rideInfo;
+
+
+  }
+
+
+
+  var rideApp = arideInfoService = ngular.module('rideApp', []);
+
+  rideApp.controller('rideController', ['$scope', rideController]);
+  rideApp.factory('RideInfoService', rideInfoService);
+})();
+

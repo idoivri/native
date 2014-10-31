@@ -2,12 +2,10 @@
 <html ng-app="rideApp">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/> 
-    <script src="dist/angular.min.js"></script>
-    <script src="js/ride.js"></script> 
     
     <!--google maps-->
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-     <script type="text/javascript" src="js/maps.js"></script>
+     
 
     <link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700" rel='stylesheet' />
     <link rel="stylesheet" href="css/ride.css">
@@ -25,16 +23,18 @@
     <h2>Where you want to go ?</h2>
     <br>
    
-    <div ng-controller="rideController">      [
+    <div ng-controller="rideController as rideController">      [
       
-      <form ng-submit="addRide()">
+      <form ng-submit="rideController.addRide()">
       <!-- <form ng-submit="directionsService.route(request,)"> -->
-        From : <input id="from" type="text" ng-model="From"  size="30"
+        From : <input id="from" type="text" ng-model="rideController.From"  ng-init="rideController.From='angular live'" size="30"
                placeholder="add new todo here" value="ibn gvirol 23, tel aviv">
         <br/><br/>
-        To :   <input id="to" type="text" ng-model="To"  size="30"
+        To :   <input id="to" type="text" ng-model="rideController.To"  size="30"
                placeholder="add new todo here" value="usha 1 tel aviv">
         <br/><br/>  
+
+        {{rideController.From}}
 
         
 
@@ -71,12 +71,18 @@
 
       <br><br><br>
 
-<!--       <div id="map" style="width: 400px; height: 300px;"></div> 
- -->
+      <div id="map" style="width: 400px; height: 300px;"></div> 
+
+ 
   </form>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <!--script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script-->
+        <script src="dist/angular.min.js"></script>
+
+    <script type="text/javascript" src="js/maps.js"></script>
+    <script src="js/ride.js"></script> 
+    
   </body>
 </html>
 

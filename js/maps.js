@@ -6,6 +6,7 @@
    mapTypeId: google.maps.MapTypeId.ROADMAP
  }
 
+console.log(document.getElementById("map"));
  var map = new google.maps.Map(document.getElementById("map"), myOptions);
  directionsDisplay.setMap(map);
 
@@ -17,17 +18,17 @@
 
 
    directionsService.route(request, function(response, status) {
-      //alert(document.getElementById("from");
-      if (status == google.maps.DirectionsStatus.OK) {
+   //    //alert(document.getElementById("from");
+       if (status == google.maps.DirectionsStatus.OK) {
 
-         // Display the distance:
-         document.getElementById('distance').innerHTML += 
-            response.routes[0].legs[0].distance.value + " meters";
+   //       // Display the distance:
+   //       document.getElementById('distance').innerHTML += 
+   //          response.routes[0].legs[0].distance.value + " meters";
 
-         // Display the duration:
-         document.getElementById('duration').innerHTML += 
-            response.routes[0].legs[0].duration.value + " seconds";
+   //       // Display the duration:
+   //       document.getElementById('duration').innerHTML += 
+   //          response.routes[0].legs[0].duration.value + " seconds";
 
-         directionsDisplay.setDirections(response);
-      }
-   });
+          directionsDisplay.setDirections(response);
+       }
+    });
