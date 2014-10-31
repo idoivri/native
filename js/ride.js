@@ -9,7 +9,7 @@
         //$scope.todos.push({text:$scope.todoText, done:false});
         //$scope.todoText = '';
         this.From='Tel Aviv Herzel 100';
-        this.To = 'Tel Aviv Herzel 90';
+        this.To = 'Ibn Gvirol 8, Tel Aviv';
 
         var rideOptions = RidesInfoService.mockRidesOptionsRealistic();
         console.log(rideOptions);
