@@ -16,7 +16,7 @@
 
         this.rideOptions = rideOptions;
 
-        $window.scrollTo(2500,0);
+        $window.scrollTo(0,1500);
 
       };
 
