@@ -1,9 +1,8 @@
 
 (function() {
    var rideController = function($scope, RidesInfoService) {
-      this.rides = [
-        {text:'learn angular', done:true},
-        {text:'build an angular app', done:false}];
+ 
+      this.rideOptions =[];
       
       this.addRide = function() {
         //alert(this.From+' '+this.To);
@@ -11,7 +10,11 @@
         //$scope.todoText = '';
         this.From='Tel Aviv Herzel 100';
         this.To = 'Tel Aviv Herzel 90';
-        console.log(this.getRidesOptions());
+
+        var rideOptions = RidesInfoService.mockRidesOptionsRealistic();
+        console.log(rideOptions);
+
+        this.rideOptions = rideOptions;
 
       };
 
@@ -31,10 +34,10 @@
         // directionsDisplay.setMap(map);
 
         // directionsDisplay.setDirections(response);
-        console.log(this.From + this.To);
-        console.log(RidesInfoService.getRidesOptions(this.From, this.To));
-
-        //return RidesInfoService.mockRidesOptions();
+        //console.log(this.From + this.To);
+        //console.log(RidesInfoService.getRidesOptions(this.From, this.To));
+        console.log(RidesInfoService.mockRidesOptions());
+        return RidesInfoService.mockRidesOptions();
         //return RidesInfoService.createRide("usha 1, tel Aviv","uri tzvi greenberg 8, Tel Aviv","car",20,50,200,300,"");
       }
    
@@ -133,6 +136,16 @@
         return rides;
       },
 
+      mockRidesOptionsRealistic:function() {
+        var ride1 = rideInfo.createRide("Ibn Gvirol 8, Tel Aviv","Tel Aviv Herzel 100","walk",4732,6164,0,0,"");
+        var ride2 = rideInfo.createRide("Ibn Gvirol 8, Tel Aviv","Tel Aviv Herzel 100","drive",853,6800,18.94,1842.8,"");
+        var ride3 = rideInfo.createRide("Ibn Gvirol 8, Tel Aviv","Tel Aviv Herzel 100","bus",1609,6423,6.6,648.723,"");
+        var ride4 = rideInfo.createRide("Ibn Gvirol 8, Tel Aviv","Tel Aviv Herzel 100","bicycle",1577,6164,128.1,0,"");
+        
+        var rides = [ride1,ride2,ride3,ride4];
+        return rides;
+      },
+
       queryGoogleRide : function(From, To, transMethod) {
           console.log('queryGoogleRide method at rideInfo service started');
 
@@ -219,6 +232,8 @@
         }
 
         var results = function(From, To, calculation) {
+
+
           var bus = rideInfo.queryGoogleRide(From, To, 'TRANSIT');
           var car = rideInfo.queryGoogleRide(From, To, 'DRIVING');
           var walk = rideInfo.queryGoogleRide(From, To, 'WALKING');
@@ -226,7 +241,6 @@
           var uber = rideInfo.queryGoogleRide(From, To, 'DRIVING');
           var bike = rideInfo.queryGoogleRide(From, To, 'WALKING');
 
-          //$timeout(calculation(walk, car, bus, taxi, uber, bike),5000)
           return calculation(walk, car, bus, taxi, uber, bike);
 
 

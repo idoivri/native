@@ -69,8 +69,8 @@ h2{
 	}
 
  body {
-	 background-color:black;
-	 text-align:center;
+/*	 background-color:black;
+*/	 text-align:center;
 	 font-family: "Courier New";
 	 text-height: 60px;
 	 
@@ -80,7 +80,7 @@ h2{
 
 #all {
 
-	background-image: url(http://1.bp.blogspot.com/_d8qBwwC64-w/TJotnNpsJTI/AAAAAAAAIzQ/wpoA1dlmAm8/s1600/DSC_0087.JPG);
+	/*background-image: url(http://1.bp.blogspot.com/_d8qBwwC64-w/TJotnNpsJTI/AAAAAAAAIzQ/wpoA1dlmAm8/s1600/DSC_0087.JPG);*/
 	 background-position: 50% 0%;
 	 background-repeat: no-repeat;
 	 -webkit-filter: blur(0px);
@@ -97,7 +97,26 @@ h2{
 
 }
 
+img {
+}
 
+#map {
+	display: none;
+}
+
+#optionsList {
+	font-size: 30px;
+	text-align: center;
+
+}
+
+
+#optionsList:hover {
+	font-size: 30px;
+	text-align: center;
+	background-color: green;
+
+}
 
 
 
