@@ -6,7 +6,7 @@
         {text:'build an angular app', done:false}];
       
       this.addRide = function() {
-        alert(this.From+' '+this.To);
+        //alert(this.From+' '+this.To);
         //$scope.todos.push({text:$scope.todoText, done:false});
         //$scope.todoText = '';
         console.log(this.getRidesOptions());
@@ -16,7 +16,22 @@
 
       this.getRidesOptions = function() {
 
-        return RidesInfoService.mockRidesOptions();
+
+        //  var directionsDisplay = new google.maps.DirectionsRenderer();
+
+        //  var myOptions = {
+        //    zoom:7,
+        //    mapTypeId: google.maps.MapTypeId.ROADMAP
+        //  }
+
+        // console.log(document.getElementById("map"));
+        // var map = new google.maps.Map(document.getElementById("map"), myOptions);
+        // directionsDisplay.setMap(map);
+
+        // directionsDisplay.setDirections(response);
+        console.log(RidesInfoService.getRidesOptions(rideController.From, rideController.To));
+
+        //return RidesInfoService.mockRidesOptions();
         //return RidesInfoService.createRide("usha 1, tel Aviv","uri tzvi greenberg 8, Tel Aviv","car",20,50,200,300,"");
       }
    
@@ -115,14 +130,52 @@
         return rides;
       },
 
-    
-      getRidesOptions : function() {
-          return [{
+      queryGoogleRide : function(From, To, transMethod) {
+          var directionsService = new google.maps.DirectionsService();
+
+          var request = {
+             origin: From, 
+             destination: To,
+             travelMode: google.maps.DirectionsTravelMode[transMethod]  // google.maps.DirectionsTravelMode.TRANSIT
+         };
+
+
+        
+          directionsService.route(request, function(response, status) {
+         //    //alert(document.getElementById("from");
+             if (status == google.maps.DirectionsStatus.OK) {
+
+         //       // Display the distance:
+         //       document.getElementById('distance').innerHTML += 
+                  var distance = response.routes[0].legs[0].distance.value;
+
+         //       // Display the duration:
+         //       document.getElementById('duration').innerHTML += 
+                  var time = response.routes[0].legs[0].duration.value;
 
 
 
+                  console.log(response);
 
-          }]
+                  return (createRide(To,From,transMethod,time,distance,null,null,null));
+             }
+             console.log('google failed misearably to recommend a ride');
+             return null;
+          });
+
+      },
+
+
+      getRidesOptions : function(From, To) {
+
+        var bus = rideInfo.queryGoogleRide(From, To, 'TRANSIT');
+        var car = rideInfo.queryGoogleRide(From, To, 'DRIVING');
+        var walk = rideInfo.queryGoogleRide(From, To, 'WALKING');
+        var taxi = rideInfo.queryGoogleRide(From, To, 'DRIVING');
+        var uber = rideInfo.queryGoogleRide(From, To, 'DRIVING');
+        var bike = rideInfo.queryGoogleRide(From, To, 'WALKING');
+
+          return [bus, car, walk, uber, taxi, bike];
 
 
         }
